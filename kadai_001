@@ -1,0 +1,94 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": []
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "q3jVKEQsz2aD",
+        "outputId": "719acd52-79da-4055-cae7-c41fcce5dc29"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Requirement already satisfied: requests in /usr/local/lib/python3.12/dist-packages (2.32.4)\n",
+            "Requirement already satisfied: beautifulsoup4 in /usr/local/lib/python3.12/dist-packages (4.13.5)\n",
+            "Requirement already satisfied: charset_normalizer<4,>=2 in /usr/local/lib/python3.12/dist-packages (from requests) (3.4.4)\n",
+            "Requirement already satisfied: idna<4,>=2.5 in /usr/local/lib/python3.12/dist-packages (from requests) (3.11)\n",
+            "Requirement already satisfied: urllib3<3,>=1.21.1 in /usr/local/lib/python3.12/dist-packages (from requests) (2.5.0)\n",
+            "Requirement already satisfied: certifi>=2017.4.17 in /usr/local/lib/python3.12/dist-packages (from requests) (2025.10.5)\n",
+            "Requirement already satisfied: soupsieve>1.2 in /usr/local/lib/python3.12/dist-packages (from beautifulsoup4) (2.8)\n",
+            "Requirement already satisfied: typing-extensions>=4.0.0 in /usr/local/lib/python3.12/dist-packages (from beautifulsoup4) (4.15.0)\n"
+          ]
+        }
+      ],
+      "source": [
+        "!pip install requests beautifulsoup4"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "import requests\n",
+        "from bs4 import BeautifulSoup\n",
+        "\n",
+        "url = \"https://news.yahoo.co.jp/articles/8143d1dcaf62fa214e817cc8e97e6bbc3a6c3b71\"\n",
+        "\n",
+        "response = requests.get(url)\n",
+        "\n",
+        "soup = BeautifulSoup(response.text, \"html.parser\")\n",
+        "\n",
+        "title_element = soup.select_one(\".article_body p.highLightSearchTarget\")\n",
+        "\n",
+        "title_text = title_element.text\n",
+        "\n",
+        "print(title_text)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "d3tdqtMv0e_r",
+        "outputId": "c9f258c8-43a5-4fef-a72b-df0cf7921595"
+      },
+      "execution_count": 4,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "　ホンダの新型プレリュードの販売が好調だ。24年ぶりに復活させたスペシャリティカーは、ハイブリッド専用モデルで617万円という立派な価格にもかかわらず、月販目標（800台）の約8カ月分を発売直後に受注し、バックオーダーを抱える人気ぶりをみせている。\n",
+            "\n",
+            "【画像】プレリュードの車内は？　「ホンダの気になるクルマ」じっくり見る\n",
+            "\n",
+            "　そもそも月販目標が少なく、アーリーアダプター（最新の製品やサービスに飛びつく層）へ行き渡ったらその後の販売台数は低空飛行を続けるのでは、という予測もある。しかし、近年にないジャンルのクルマとして、中高年ドライバーを中心に人気を博しているのは間違いない。\n",
+            "\n",
+            "　2ドアで高級感のある内装を備えた大人のクーペというキャラクターも魅力的であるが、試乗したドライバーをひきつけるのはその操縦感覚だろう。\n",
+            "\n",
+            "　そもそもEVやシリーズハイブリッドといったモーターで走行するクルマは、MT車と同じくダイレクト感にあふれた走行感覚を与えてくれるという魅力がある。それはアイドリングやクラッチがなく、正逆どちらにも回転できるモーターの特性からすれば「利用しなけりゃ損」と思えるほどの特性だ。\n",
+            "\n",
+            "　さらに実際にタイヤを回す駆動力となるトルクはほぼ一定であり、静止状態からの加速によって最も強く加速Gを感じるため、同じ出力のエンジンと比べると、はるかにパワフルに感じる。こうしたモーターならではの特性は、EVの登場初期から注目されていた。\n"
+          ]
+        }
+      ]
+    }
+  ]
+}
